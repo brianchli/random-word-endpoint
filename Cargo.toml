@@ -1,0 +1,10 @@
+[package]
+name = "random-word-api"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = { version = "0.8.6", features = ["json"] }
+random_word = { version = "0.5.2", features = ["en"] }
+serde = { version = "1.0.228", features = ["derive"] }
+tokio = { version = "1.48.0", features = ["rt-multi-thread"] }
