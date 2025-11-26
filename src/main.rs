@@ -8,16 +8,18 @@ struct RandomWord {
 
 #[tokio::main]
 async fn main() {
-    let app = Router::new().route(
-        "/",
-        get(|| async {
+    let app = Router::new()
+        .route( "/", get(|| async {
+            "/rand-word"
+        }))
+        .route( "/rand-word", get(|| async {
             axum::extract::Json(RandomWord {
                 word: random_word::get(Lang::En),
             })
         }),
     );
     let port = 49152;
-    let listener = tokio::net::TcpListener::bind(format!("127.0.0.1:{port}"))
+    let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{port}"))
         .await
         .unwrap_or_else(|_| panic!("unable to bind to port {port}; time to die!"));
     println!("serving at http://localhost:{port}");

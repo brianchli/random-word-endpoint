@@ -1,0 +1,10 @@
+services:
+  backend:
+    build: .
+    container_name: axum-random-word-api
+    environment:
+      BACKEND_PORT: ${BACKEND_PORT}
+      RUST_LOG: debug
+    ports:
+      - "127.0.0.1:${BACKEND_PORT}:${BACKEND_PORT}"
+    restart: unless-stopped
